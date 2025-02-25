@@ -32,6 +32,9 @@ namespace FlyByWireSASMode
         // config
         private static AutopilotMode requiredSASMode = AutopilotMode.Maneuver;
         internal static float inputSensitivity = 1f;
+        internal static bool invertPitch = false;
+        internal static KeyBinding LOCAL_PITCH_DOWN;
+        internal static KeyBinding LOCAL_PITCH_UP;
 
         // internal state
         private bool started;
@@ -84,6 +87,17 @@ namespace FlyByWireSASMode
                         case 3: requiredSASMode = AutopilotMode.Maneuver; break;
                         default: requiredSASMode = AutopilotMode.Maneuver; break;
                     }
+                }
+                nodes[0].TryGetValue("InvertPitch", ref invertPitch);
+                if (invertPitch)
+                {
+                    LOCAL_PITCH_DOWN = GameSettings.PITCH_UP;
+                    LOCAL_PITCH_UP = GameSettings.PITCH_DOWN;
+                }
+                else
+                {
+                    LOCAL_PITCH_DOWN = GameSettings.PITCH_DOWN;
+                    LOCAL_PITCH_UP = GameSettings.PITCH_UP;
                 }
             }
 
