@@ -56,10 +56,8 @@ namespace FlyByWireSASMode
                     bool precisionMode = FlightInputHandler.fetch.precisionMode;
 
                     double pitch = GameSettings.AXIS_PITCH.GetAxis();
-                    //if (GameSettings.PITCH_DOWN.GetKey())
                     if (FlyByWireSASMode.LOCAL_PITCH_DOWN.GetKey())
                             pitch = precisionMode ? -0.25 : - 1.0;
-                    //else if (GameSettings.PITCH_UP.GetKey())
                     else if (FlyByWireSASMode.LOCAL_PITCH_UP.GetKey())
                         pitch = precisionMode ? 0.25 : 1.0;
 
