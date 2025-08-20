@@ -1,5 +1,6 @@
 Changelog
 
+2.2.0.1
 	Adds option added to invert the pitch controls
 	Reorganized for LGG build process
 	
