@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
+using KSP.UI.Screens;
+using KSP.Localization;
+
 namespace FlyByWireSASMode
 {
     internal enum CustomSASMode
