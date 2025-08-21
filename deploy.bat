@@ -25,4 +25,4 @@ copy /Y %VERSIONFILE% %GAMEDATA%\%GAMEDIR%
 xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
 xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H3%\GameData\%GAMEDIR%"
 
-pause
+rem pause

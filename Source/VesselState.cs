@@ -1,9 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-using KSP.UI.Screens;
-using KSP.Localization;
-
 namespace FlyByWireSASMode
 {
     internal enum CustomSASMode
@@ -18,6 +15,9 @@ namespace FlyByWireSASMode
     internal class VesselState
     {
         public Vessel vessel;
+#if UNIX
+        VesselAutopilot ap;
+#endif
         public CustomSASMode sasMode;
         public Vector3d direction;
         private Vector3d previousUp;
@@ -25,6 +25,9 @@ namespace FlyByWireSASMode
         public VesselState(Vessel vessel, CustomSASMode sasMode)
         {
             this.vessel = vessel;
+#if UNIX
+            this.ap = VesselAutopilotAccess.GetAutopilot(vessel);
+#endif
             this.sasMode = sasMode;
             vessel.OnPreAutopilotUpdate += OnPreAutopilotUpdate;
             ResetDirection();
@@ -39,13 +42,25 @@ namespace FlyByWireSASMode
         public void Destroy()
         {
             vessel.OnPreAutopilotUpdate -= OnPreAutopilotUpdate;
+#if UNIX
+
+            var m = VesselAutopilotAccess.GetAutopilotMode(ap);
+            VesselAutopilotAccess.SetAutopilotMode(ap, m);
+
+#else
             vessel.Autopilot.SetMode(vessel.autopilot.Mode);
+#endif
+
         }
 
         private void OnPreAutopilotUpdate(FlightCtrlState st)
         {
             // continuously set mode to stability assist so we know which button to disable
+#if UNIX
+            VesselAutopilotAccess.SetAutopilotMode(ap, VesselAutopilot.AutopilotMode.StabilityAssist);
+#else
             vessel.Autopilot.mode = VesselAutopilot.AutopilotMode.StabilityAssist;
+#endif
 
             if (sasMode == CustomSASMode.FlyByWire || sasMode == CustomSASMode.FlyByWirePlaneMode)
             {
