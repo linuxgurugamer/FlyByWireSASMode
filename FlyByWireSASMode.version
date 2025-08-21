@@ -1,7 +1,7 @@
 {
   "NAME": "FlyByWireSASMode",
   "URL": "https://raw.githubusercontent.com/linuxgurugamer/FlyByWireSASMode/refs/heads/master/FlyByWireSASMode.version",
-  "DOWNLOAD": "https://github.com/gotmachine/FlyByWireSASMode/releases",
+  "DOWNLOAD": "https://github.com/linuxgurugamer/FlyByWireSASMode/releases",
   "VERSION": {
     "MAJOR": 2,
     "MINOR": 2,
